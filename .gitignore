@@ -1,0 +1,6 @@
+*.un~
+*.swp
+*.bak
+**/build
+*.gem
+**/temp

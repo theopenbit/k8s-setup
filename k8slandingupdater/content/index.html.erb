@@ -1,0 +1,59 @@
+<html>
+<style>
+h1 { color: #111; font-family: 'Open Sans Condensed', sans-serif; font-size: 48px; font-weight: 700; line-height: 48px; margin: 0 0 0; padding: 20px 30px; text-align: center; text-transform: uppercase; }
+
+h2 { color: #111; font-family: 'Open Sans Condensed', sans-serif; font-size: 32px; font-weight: 700; line-height: 32px; margin: 0 0 24px; padding: 0 30px; text-align: center; text-transform: uppercase; }
+
+h3 {  border: 3px double #ccc;
+      color: #111; font-family: 'Open Sans Condensed', sans-serif; font-size: 24px; font-weight: 700; line-height: 24px; margin: 0 0 24px; padding: 0 30px; text-align: left; text-transform: uppercase; }
+
+h4 { color: #111; font-family: 'Open Sans Condensed', sans-serif; font-size: 16px; font-weight: 700; line-height: 16px; margin: 0 0 24px; padding: 0 30px; text-align: left; text-transform: uppercase; }
+
+p { color: #111; font-family: 'Open Sans', sans-serif; font-size: 10px; line-height: 10px; margin: 0 0 48px; }
+
+a { color: green; text-decoration: none; }
+
+a:hover { text-decoration: underline }
+
+dl {
+    padding: 0.5em;
+    font-family: 'Open Sans', sans-serif;    
+  }
+  dt {
+    float: left;
+    clear: left;
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+  }
+  dt::after {
+    content: ":";
+  }
+  dd {
+    margin: 0 0 0 110px;
+    padding: 0 0 0.5em 0;
+  }
+</style>
+<img src="https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png" height="84" width="84"/>
+    <h1>Kubernetes cluster info</h1>
+    <% namespaces.each do |key,services| %>
+       <h2>Namespace: <%= key %></h2>
+       <% services.each do |service|%>
+           <h3>Service: <%= service['name']%></h3>
+           <dl>
+               <dt>Type</dt>
+               <dd><%=service['type']%></dd>
+           </dl>    
+           <% if !service['ports'].nil? then %>
+               <h4>Ports</h4>    
+                <% service['ports'].each do |port|%>
+                    <dl>
+                        <dt><%= port['name']%></dt>
+                        <dd><%= port['port']%></dd>
+                        <dd><a href="http://<%= kubernetesmaster%>:<%=port['port']%>">"<%=kubernetesmaster%>:<%=port['port']%>"</a>
+                    </dl>
+                <%end %>
+           <% end %>    
+       <%end%>
+    <% end %>
+</html>    
