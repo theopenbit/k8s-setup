@@ -1,7 +1,7 @@
-FROM ruby:2.1-alpine
+FROM hypriot/ruby:2.2.2
 MAINTAINER theOpenBit <tob at schoenesnetz.de>
 RUN apk update && apk add curl 
-RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.5.2/bin/linux/amd64/kubectl
+RUN curl -O https://storage.googleapis.com/kubernetes-release/release/v1.5.2/bin/linux/arm/kubectl
 RUN chmod +x kubectl && chmod +x kubectl
 COPY svc2html.rb /
 COPY k8sLandingPageUpdate.sh /
