@@ -1,0 +1,31 @@
+version: '2'
+services:
+  ingress:
+    image: "nginx:alpine"
+    restart: always
+    ports:
+    - "80:80"
+    volumes:
+    - ./temp:/usr/share/nginx/html
+  k8slandingupdater:
+    image: "theopenbit/k8slandingupdater:latest"
+    restart: always
+    volumes: 
+    - ./temp:/tmp
+    - ${KUBECONFIG_PATH}:${KUBECONFIG_PATH}
+    environment:
+    - KUBECONFIG=${KUBECONFIG}
+  nfsserver:
+    image:  "cpuguy83/nfs-server"
+    command: /nfsmnt
+    restart: always
+    privileged: true
+    volumes:
+    - ./nfsmnt:/nfsmnt
+    ports:  
+    - 2049:2049
+    - 111:111/udp  
+    
+    
+    
+

@@ -4,3 +4,4 @@
 **/build
 *.gem
 **/temp
+**/nfsmnt
