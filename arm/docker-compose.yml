@@ -16,7 +16,7 @@ services:
     environment:
     - KUBECONFIG=${KUBECONFIG}
   nfsserver:
-    image:  "fnphat/rpi-raspbian-nfsd"
+    image:  "theopenbit/rpi-nfs-server"
     command: /nfsmnt
     restart: always
     privileged: true

@@ -38,22 +38,30 @@ dl {
     <h1>Kubernetes cluster info</h1>
     <% namespaces.each do |key,services| %>
        <h2>Namespace: <%= key %></h2>
-       <% services.each do |service|%>
-           <h3>Service: <%= service['name']%></h3>
-           <dl>
-               <dt>Type</dt>
-               <dd><%=service['type']%></dd>
-           </dl>    
-           <% if !service['ports'].nil? then %>
-               <h4>Ports</h4>    
-                <% service['ports'].each do |port|%>
-                    <dl>
-                        <dt><%= port['name']%></dt>
-                        <dd><%= port['port']%></dd>
-                        <dd><a href="http://<%= kubernetesmaster%>:<%=port['port']%>">"<%=kubernetesmaster%>:<%=port['port']%>"</a>
-                    </dl>
-                <%end %>
-           <% end %>    
-       <%end%>
+       <table> 
+           <tr>
+               <th>Service</th>
+               <th>Type</th>
+               <th>Port</th>
+           </tr>
+           <% services.each do |service|%>
+           <tr>
+               <td><%= service['name']%></td>
+               <td><%=service['type']%></td>
+               <td>
+               <% if !service['ports'].nil? then %>
+                    <table>    
+                    <% service['ports'].each do |port|%>
+                    <tr>
+                      <td><%= port['name']%></td>
+                      <td><%= port['port']%></td>
+                      <td><a href="http://<%= kubernetesmaster%>:<%=port['port']%>">"<%=kubernetesmaster%>:<%=port['port']%>"</a></td>
+                    </tr>
+                    <%end %>
+                    </table>       
+               <% end %>                
+               </td>
+           <%end%>
+       </table>    
     <% end %>
 </html>    
