@@ -1,0 +1,32 @@
+version: '2'
+services:
+  ingress:
+    image: "lalyos/rpi-nginx"
+    restart: always
+    ports:
+    - "80:80"
+    volumes:
+    - ./temp:/usr/share/nginx/html
+  k8slandingupdater:
+    image: "theopenbit/rpi-k8slandingupdater:latest"
+    restart: always
+    volumes: 
+    - ./temp:/tmp
+    - ${KUBECONFIG_PATH}:${KUBECONFIG_PATH}
+    environment:
+    - KUBECONFIG=${KUBECONFIG}
+  nfsserver:
+    image:  "fnphat/rpi-raspbian-nfsd"
+    command: /nfsmnt
+    restart: always
+    privileged: true
+    volumes:
+    - ./nfsmnt:/nfsmnt
+    - ./services:/etc/services  
+    ports:  
+    - 2049:2049
+    - 111:111/udp  
+    
+    
+    
+

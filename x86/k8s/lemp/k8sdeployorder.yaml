@@ -1,0 +1,4 @@
+- pv.yaml.erb
+- pvc.yaml.erb
+- deployment.yaml.erb
+- service.yaml.erb  
