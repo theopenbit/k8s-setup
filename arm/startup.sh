@@ -22,6 +22,9 @@ chmod 777 nfsmnt
 mkdir -p temp
 chmod 777 temp
 export KUBECONFIG=$1
-export KUBECONFIG_PATH=$(dirname $KUBECONFIG)
+export KUBECONFIG_PATH=$(dirname $KUBECONFIG
+echo 'deploying kube-ops-view to k8s-cluster'
 sudo -E docker-compose up -d
 ./k8s/kube-ops-view/deploy $1 kube-ops-view
+echo 'deploying dashboard to k8s-cluster'
+curl -sSL https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml | sed "s/amd64/arm/g" | kubectl apply -f -
