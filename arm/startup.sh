@@ -24,4 +24,5 @@ chmod 777 temp
 export KUBECONFIG=$1
 export KUBECONFIG_PATH=$(dirname $KUBECONFIG)
 sudo -E docker-compose up -d
-./k8s/kube-ops-view/deploy.sh $1 kube-ops-view
+cd ./k8s/kube-ops-view
+./deploy.sh $1 kube-ops-view
