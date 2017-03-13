@@ -36,7 +36,7 @@ a:hover { text-decoration: underline }
                     <table border="1">    
                     <% service['ports'].each do |port|%>
                     <tr>
-                      <% if !service['name'].nil? then %>    
+                      <% if !port['name'].nil? then %>    
                       <td><%= port['name']%></td>
                       <% end %>    
                       <td><%= port['port']%></td>
