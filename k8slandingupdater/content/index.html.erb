@@ -36,11 +36,13 @@ a:hover { text-decoration: underline }
                     <table border="1">    
                     <% service['ports'].each do |port|%>
                     <tr>
+                      <% if !service['name'].nil? then %>    
                       <td><%= port['name']%></td>
+                      <% end %>    
                       <td><%= port['port']%></td>
                       <td><a href="http://<%= kubernetesmaster%>:<%=port['port']%>">"<%=kubernetesmaster%>:<%=port['port']%>"</a></td>
                     </tr>
-                    <%end %>
+                    <% end %>
                     </table>       
                <% end %>                
                </td>
