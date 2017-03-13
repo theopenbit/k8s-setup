@@ -22,7 +22,7 @@ chmod 777 nfsmnt
 mkdir -p temp
 chmod 777 temp
 export KUBECONFIG=$1
-export KUBECONFIG_PATH=$(dirname $KUBECONFIG
+export KUBECONFIG_PATH=$(dirname $KUBECONFIG)
 echo 'deploying kube-ops-view to k8s-cluster'
 sudo -E docker-compose up -d
 cd ./k8s/kube-ops-view
