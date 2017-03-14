@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: php
+  name: phpfpm
   namespace: <%= namespace %>  
 spec:
   selector:
-    app: php
+    app: phpfpm
   type: NodePort
   ports:
   - port: 9000

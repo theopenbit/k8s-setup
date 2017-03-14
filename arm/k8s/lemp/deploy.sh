@@ -6,3 +6,7 @@ fi
 
 docker run -v $(pwd):/k8swork -v $(dirname $1):$(dirname $1) -e KUBECONFIG=$1 theopenbit/rpi-k8sdeployer -n $2  -d /k8swork
 
+if [ -d ../../nfsmnt ]; then
+  echo copy test content to nfs storage
+  cp ./test.php ../../nfsmnt/
+fi
