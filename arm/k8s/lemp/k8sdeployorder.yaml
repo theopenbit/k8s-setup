@@ -1,4 +1,7 @@
+- config-map.yaml.erb
 - pv.yaml.erb
 - pvc.yaml.erb
-- deployment.yaml.erb
-- service.yaml.erb  
+- deployment-nginx.yaml.erb
+- service-nginx.yaml.erb  
+- deployment-php.yaml.erb
+- service-php.yaml.erb

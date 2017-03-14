@@ -17,9 +17,17 @@ spec:
         - containerPort: 80
           protocol: TCP
         volumeMounts:
+          - name: nginx-default
+            mountPath: /etc/nginx/sites-enabled/default                
           - name: nfs
             mountPath: /usr/share/nginx/html
       volumes:      
+      - name: nginx-default
+        configMap:
+          name: lemp-config
+          items:
+          - key: nginx-default
+            path: default
       - name: nfs
         persistentVolumeClaim:
           claimName: nfs
