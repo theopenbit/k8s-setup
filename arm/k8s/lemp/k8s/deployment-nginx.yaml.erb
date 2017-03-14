@@ -18,7 +18,9 @@ spec:
           protocol: TCP
         volumeMounts:
           - name: nginx-default
-            mountPath: /etc/nginx/sites-enabled/default                
+            mountPath: /etc/nginx/sites-available                
+          - name: nginx-default
+            mountPath: /etc/nginx/sites-enabled                
           - name: nfs
             mountPath: /usr/share/nginx/html
       volumes:      

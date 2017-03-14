@@ -1,17 +1,17 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: php
+  name: phpfpm
   namespace: <%= namespace %>  
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: php
+        app: phpfpm
     spec:
       containers:
-      - name: php
+      - name: phpfpm
         image: lojzik/rpi-php-fpm:latest
         ports:
         - containerPort: 9000
