@@ -29,6 +29,6 @@ export KUBECONFIG_PATH=$(dirname $KUBECONFIG)
 sudo -E docker-compose up -d
 echo 'deploying kube-ops-view to k8s-cluster'
 cd ./k8s/kube-ops-view
-./deploy.sh
+./deploy.sh $1 monitoring
 echo 'deploying dashboard to k8s-cluster'
 curl -sSL https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml | sed "s/amd64/arm/g" | kubectl apply -f -
