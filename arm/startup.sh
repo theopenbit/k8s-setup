@@ -15,16 +15,20 @@ if [ $? -eq 1 ]; then
     curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose
 fi
+hash nfsstat &> /dev/null
+if [ $? -eq 1 ]; then
 sudo apt update
 sudo apt install -y nfs-common
+fi
 mkdir -p nfsmnt
 chmod 777 nfsmnt
 mkdir -p temp
 chmod 777 temp
 export KUBECONFIG=$1
 export KUBECONFIG_PATH=$(dirname $KUBECONFIG)
-echo 'deploying kube-ops-view to k8s-cluster'
 sudo -E docker-compose up -d
+echo 'deploying kube-ops-view to k8s-cluster'
 cd ./k8s/kube-ops-view
+./deploy.sh
 echo 'deploying dashboard to k8s-cluster'
 curl -sSL https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml | sed "s/amd64/arm/g" | kubectl apply -f -

@@ -4,6 +4,17 @@ This project includes some bootstrap scripts for setup a simple kubernetes clust
 
 The idea is to setup the cluster using kubeadm (https://kubernetes.io/docs/getting-started-guides/kubeadm) and put some additional tooling around the cluster. 
 
+* on master
+```kubeadm init --pod-network-cidr=10.244.0.0/16```
+* remember the token printed out on execution of ```kubeadm init```
+* deploy flannel
+
+* wait until all container are running
+```kubectl --namespace kube-system get po```
+* on worker
+```kubeadm join <masterip> --token  <token>
+
+
 All addional tooling is setup using docker-compose. 
 
 A startup script is placed in the architecture depending subdirectory x86 or arm (for rpi).
