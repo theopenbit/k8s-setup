@@ -13,8 +13,8 @@ data:
        index index.php index.html index.html;
        server_name <%= namespaceconfig['masterip'] %>;
        location / {
-           try_files $uri /index.php$is_args$args;
-       }
+           try_files $uri $uri/index.html;
+       }       
        location ~ \.php$ {
            fastcgi_split_path_info ^(.+\.php)(/.+)$;
            fastcgi_pass phpfpm:9000; 
