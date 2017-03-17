@@ -8,11 +8,11 @@ The idea is to setup the cluster using kubeadm (https://kubernetes.io/docs/getti
 ```kubeadm init --pod-network-cidr=10.244.0.0/16```
 * remember the token printed out on execution of ```kubeadm init```
 * deploy flannel
-
+```curl -sSL "https://github.com/coreos/flannel/blob/master/Documentation/kube-flannel.yml?raw=true" | sed "s/amd64/arm/g" | kubectl create -f -```
 * wait until all container are running
 ```kubectl --namespace kube-system get po```
 * on worker
-```kubeadm join <masterip> --token  <token>
+```kubeadm join <masterip> --token  <token>```
 
 
 All addional tooling is setup using docker-compose. 
