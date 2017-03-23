@@ -1,6 +1,9 @@
 - config-map.yaml.erb
 - pv.yaml.erb
 - pvc.yaml.erb
+- job-init-pv.yaml.erb
+- pv-nfs.yaml.erb
+- pvc-nfs.yaml.erb
 - deployment-nginx.yaml.erb
 - service-nginx.yaml.erb  
 - deployment-php.yaml.erb
