@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -10,4 +11,18 @@ spec:
     - ReadWriteMany
   nfs:    
     server: <%= namespaceconfig['masterip'] %>
-    path: "/<%= namespace %>"
+    path: "/<%= namespace %>/nginx"
+---    
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-mariadb-<%= namespace %>
+  namespace: <%= namespace %>
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:    
+    server: <%= namespaceconfig['masterip'] %>
+    path: "/<%= namespace %>/mariadb"
