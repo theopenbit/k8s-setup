@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: nginx
+  name: mariadb
   namespace: <%= namespace %>  
 spec:
   replicas: 1
@@ -23,7 +23,8 @@ spec:
         - containerPort: 5568
           protocol: TCP
         env:
-        - MYSQL_ROOT_PASSWORD: mypass
+        - name: MYSQL_ROOT_PASSWORD
+          value: <%= namespaceconfig['mypass'] %> 
         volumeMounts:
         - name: mariadb
           mountPath: /var/lib/mysql                          

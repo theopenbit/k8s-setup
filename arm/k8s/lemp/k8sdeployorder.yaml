@@ -3,7 +3,6 @@
 - pvc.yaml.erb
 - job-init-pv.yaml.erb
 - pv-nfs.yaml.erb
-- pvc-nfs.yaml.erb
 - deployment-mariadb.yaml.erb
 - service-mariadb.yaml.erb
 - deployment-nginx.yaml.erb
