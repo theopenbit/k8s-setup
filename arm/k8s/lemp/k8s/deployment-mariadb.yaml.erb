@@ -14,6 +14,8 @@ spec:
       - name: mariadb
         image: theopenbit/rpi-mariadb:latest
         ports:
+        - containerPort: 3306
+          protocol: TCP
         - containerPort: 4306
           protocol: TCP
         - containerPort: 5567
