@@ -7,6 +7,8 @@ The idea is to setup the cluster using kubeadm (https://kubernetes.io/docs/getti
 * on master
 ```kubeadm init --pod-network-cidr=10.244.0.0/16```
 * remember the token printed out on execution of ```kubeadm init```
+* since k8s 1.6 deploy rbac for flannel
+```kubectl create -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel-rbac.yml```
 * deploy flannel
 ```curl -sSL "https://github.com/coreos/flannel/blob/master/Documentation/kube-flannel.yml?raw=true" | sed "s/amd64/arm/g" | kubectl create -f -```
 * wait until all container are running
