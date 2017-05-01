@@ -13,7 +13,8 @@ The idea is to setup the cluster using kubeadm (https://kubernetes.io/docs/getti
 * install an overlay network, there are two possible 
   * install weave overlay network
   ```kubectl apply -f https://git.io/weave-kube-1.6```
-  * flannel since k8s 1.6 deploy rbac for flannel
+  * or install flannel overlay network
+    * since k8s 1.6 deploy rbac for flannel
    ```kubectl create -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel-rbac.yml```
     * deploy flannel (for arm (i.e. rpi) you need to replace amd64)
     ```curl -sSL "https://github.com/coreos/flannel/blob/master/Documentation/kube-flannel.yml?raw=true" | sed "s/amd64/arm/g" | kubectl create -f -```
