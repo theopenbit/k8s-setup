@@ -11,7 +11,7 @@ spec:
       containers:
       - name: init-pv
         image: hypriot/rpi-alpine:3.5
-        command: ["mkdir", "-p", "/pv/<%= namespace %>/nginx", "/pv/<%= namespace %>/mariadb"]
+        command: ["/bin/sh","-c","mkdir -p /pv/<%= namespace %>/nginx /pv/<%= namespace %>/mariadb && chmod 777 -R /pv/<%= namespace %>/"]
         volumeMounts:
          - name: pv
            mountPath: /pv

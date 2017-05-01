@@ -10,10 +10,10 @@ data:
        # this path MUST be exactly as docker-compose.fpm.volumes,
        # even if it doesn't exists in this dock.
        root /usr/share/nginx/html;
-       index index.php index.html index.html;
+       index index.php index.html index.htm;
        server_name <%= namespaceconfig['masterip'] %>;
        location / {
-           try_files $uri $uri/index.html;
+           try_files $uri $uri/index.html /index.php;
        }       
        location ~ \.php$ {
            fastcgi_split_path_info ^(.+\.php)(/.+)$;
@@ -23,22 +23,3 @@ data:
            include fastcgi_params;
        }
     }
-  index.html: |- 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>k8s-lemp nginx</title>
-    <style>
-       body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-        background: white;
-       }
-    </style>
-    </head>
-    <body>
-      <h1>Welcome to LEMP-Stack in namespace <%= namespace %>!</h1>
-      <?php phpinfo();?>
-    </body>
-    </html>

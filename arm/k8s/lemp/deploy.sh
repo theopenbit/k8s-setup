@@ -8,5 +8,6 @@ docker run -v $(pwd):/k8swork -v $(dirname $1):$(dirname $1) -e KUBECONFIG=$1 th
 
 if [ -d ../../nfsmnt ]; then
   echo copy test content to nfs storage
-  cp ./test.php ../../nfsmnt/
+  mkdir -p ../../nfsmnt/$2/nginx
+  cp ./content/index.php ../../nfsmnt/$2/nginx
 fi
