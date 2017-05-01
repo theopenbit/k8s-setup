@@ -1,15 +1,21 @@
 # Info
 
-This project includes some bootstrap scripts for setup a simple kubernetes cluster infrastructure.
+This project includes some bootstrap scripts for setup a simple kubernetes cluster infrastructure based on kubernetes 1.6+. 
 
-The idea is to setup the cluster using kubeadm (https://kubernetes.io/docs/getting-started-guides/kubeadm) and put some additional tooling around the cluster. 
 
+The idea is to setup the cluster using kubeadm (https://kubernetes.io/docs/getting-started-guides/kubeadm) and put some additional tooling around the cluster. (thanks to luxas https://github.com/luxas/kubeadm-workshop)
+
+* regenerate a unique machine-id on all nodes if you are running hypriot os (thanks to https://ro14nd.de/k8s-on-pi-update)
+```dbus-uuidgen > /etc/machine-id```
 * on master
-```kubeadm init --pod-network-cidr=10.244.0.0/16```
+```kubeadm init --pod-network-cidr=10.244.0.0/16 --config kubeadm.yaml```
 * remember the token printed out on execution of ```kubeadm init```
-* since k8s 1.6 deploy rbac for flannel
+* install an overlay network, there are two possible 
+** install weave overlay network
+```kubectl apply -f https://git.io/weave-kube-1.6```
+** flannel since k8s 1.6 deploy rbac for flannel
 ```kubectl create -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel-rbac.yml```
-* deploy flannel
+** deploy flannel (for arm (i.e. rpi) you need to replace amd64)
 ```curl -sSL "https://github.com/coreos/flannel/blob/master/Documentation/kube-flannel.yml?raw=true" | sed "s/amd64/arm/g" | kubectl create -f -```
 * wait until all container are running
 ```kubectl --namespace kube-system get po```

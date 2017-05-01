@@ -1,4 +1,5 @@
 - redis-deployment.yaml.erb
 - redis-service.yaml.erb
 - deployment.yaml.erb
-- service.yaml.erb  
+- service.yaml.erb 
+- auth.yaml.erb 
