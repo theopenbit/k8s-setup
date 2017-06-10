@@ -1,0 +1,8 @@
+- pv.yaml.erb
+- pvc.yaml.erb
+- job-init-pv.yaml.erb
+- pv-nfs.yaml.erb
+- deployment-mariadb.yaml.erb
+- service-mariadb.yaml.erb
+- deployment-nginx.yaml.erb
+- service-nginx.yaml.erb  

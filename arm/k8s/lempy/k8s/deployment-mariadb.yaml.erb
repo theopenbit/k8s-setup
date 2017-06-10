@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mariadb
+  namespace: <%= namespace %>  
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: theopenbit/rpi-mariadb:latest
+        ports:
+        - containerPort: 3306
+          protocol: TCP
+        - containerPort: 4306
+          protocol: TCP
+        - containerPort: 5567
+          protocol: TCP
+        - containerPort: 5444
+          protocol: TCP
+        - containerPort: 5568
+          protocol: TCP
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: <%= namespaceconfig['mypass'] %> 
+        volumeMounts:
+        - name: mariadb
+          mountPath: /var/lib/mysql                          
+      volumes:      
+      - name: mariadb
+        persistentVolumeClaim:
+          claimName: nfs-mariadb-<%= namespace %>

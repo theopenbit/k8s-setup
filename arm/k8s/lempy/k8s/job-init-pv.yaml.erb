@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-pv
+  namespace: <%= namespace %> 
+spec:
+  template:
+    metadata:
+      name: init-pv
+    spec:
+      containers:
+      - name: init-pv
+        image: hypriot/rpi-alpine:3.5
+        command: ["/bin/sh","-c","mkdir -p /pv/<%= namespace %>/nginx /pv/<%= namespace %>/mariadb && chmod 777 -R /pv/<%= namespace %>/"]
+        volumeMounts:
+         - name: pv
+           mountPath: /pv
+      volumes:      
+      - name: pv
+        persistentVolumeClaim:
+          claimName: pv-<%= namespace %>
+      restartPolicy: Never
