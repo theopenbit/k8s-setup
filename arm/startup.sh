@@ -26,7 +26,10 @@ mkdir -p temp
 chmod 777 temp
 export KUBECONFIG=$1
 export KUBECONFIG_PATH=$(dirname $KUBECONFIG)
-export KUBEFQDN=192.168.1.37
+#export KUBEFQDN=192.168.1.37
+#export KUBEFQDN=172.17.100.248
+#export KUBEFQDN=192.168.2.1
+export KUBEFQDN=192.168.0.1
 sudo -E docker-compose up -d
 echo 'deploying heapster to k8s-cluster'
 kubectl apply -f ./k8s/heapster.yaml
@@ -34,4 +37,6 @@ echo 'deploying kube-ops-view to k8s-cluster'
 cd ./k8s/kube-ops-view
 ./deploy.sh $1 monitoring
 echo 'deploying dashboard to k8s-cluster'
-curl -sSL https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml | sed "s/amd64/arm/g" | kubectl apply -f -
+#curl -sSL https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml | sed "s/amd64/arm/g" | kubectl apply -f -
+#curl -sSL https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard-arm-head.yaml | kubectl apply -f -
+kubectl apply -f ./k8s/kubernetes-dashboard-arm.yaml

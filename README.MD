@@ -8,7 +8,7 @@ The idea is to setup the cluster using kubeadm (https://kubernetes.io/docs/getti
 * regenerate a unique machine-id on all nodes if you are running hypriot os (thanks to https://ro14nd.de/k8s-on-pi-update)
 ```dbus-uuidgen > /etc/machine-id```
 * on master
-```kubeadm init --pod-network-cidr=10.244.0.0/16 --config kubeadm.yaml```
+```kubeadm init --config kubeadm.yaml```
 * remember the token printed out on execution of ```kubeadm init```
 * install an overlay network, there are two possible 
   * install weave overlay network
