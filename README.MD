@@ -10,14 +10,11 @@ The idea is to setup the cluster using kubeadm (https://kubernetes.io/docs/getti
 * on master
 ```kubeadm init --config kubeadm.yaml```
 * remember the token printed out on execution of ```kubeadm init```
-* install an overlay network, there are two possible 
-  * install weave overlay network
-  ```kubectl apply -f https://git.io/weave-kube-1.6```
-  * or install flannel overlay network
-    * since k8s 1.6 deploy rbac for flannel
-   ```kubectl create -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel-rbac.yml```
-    * deploy flannel (for arm (i.e. rpi) you need to replace amd64)
-    ```curl -sSL "https://github.com/coreos/flannel/blob/master/Documentation/kube-flannel.yml?raw=true" | sed "s/amd64/arm/g" | kubectl create -f -```
+* install an overlay network, for example weave net: (refer https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/)
+  
+  ```export kubever=$(kubectl version | base64 | tr -d '\n')
+     kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+  ```
 * wait until all container are running
 ```kubectl --namespace kube-system get po```
 * on worker

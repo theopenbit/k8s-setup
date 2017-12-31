@@ -11,4 +11,4 @@ apiServerExtraArgs:
   proxy-client-key-file: "/etc/kubernetes/pki/front-proxy-client.key"
 kubernetesVersion: "latest"
 pod-network-cidr: "10.244.0.0/16"
-authorization-mode:RBAC
+authorization-mode: "RBAC"
